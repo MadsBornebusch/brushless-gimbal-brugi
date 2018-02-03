@@ -177,9 +177,13 @@ void readGyros() {
 
   // read gyros
   mpu.getRotation(&axisRot[0], &axisRot[1], &axisRot[2]);
-  axisRot[0] -= config.gyrOffsetX;
-  axisRot[1] -= config.gyrOffsetY;
-  axisRot[2] -= config.gyrOffsetZ;
+  // apply gyro calibration values if gyro is not saturated
+  if(((axisRot[0] >= gyroXmin ) && (axisRot[0] <= gyroXmax)))
+    axisRot[0] -= config.gyrOffsetX;
+  if(((axisRot[1] >= gyroYmin ) && (axisRot[1] <= gyroYmax)))
+    axisRot[1] -= config.gyrOffsetY;
+  if(((axisRot[2] >= gyroZmin ) && (axisRot[2] <= gyroZmax)))
+    axisRot[2] -= config.gyrOffsetZ;
   
   idx = sensorDef.Gyro[0].idx;
   gyroADC[ROLL] = axisRot[idx];

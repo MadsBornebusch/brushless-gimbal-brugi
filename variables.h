@@ -253,6 +253,13 @@ int16_t x_val;
 int16_t y_val;
 int16_t z_val;
 
+int16_t gyroXmax = 32767;
+int16_t gyroYmax = 32767;
+int16_t gyroZmax = 32767;
+int16_t gyroXmin = -32768;
+int16_t gyroYmin = -32768;
+int16_t gyroZmin = -32768; 
+
 float PitchPhiSet = 0;
 float RollPhiSet = 0;
 static float pitchAngleSet=0;

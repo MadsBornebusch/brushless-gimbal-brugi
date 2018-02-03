@@ -97,6 +97,20 @@ void gyroOffsetCalibration()
   config.gyrOffsetY = fp_gyroOffset[1];
   config.gyrOffsetZ = fp_gyroOffset[2];
 
+  // adjust min and max gyro values (gyro saturation values) according to offset values
+  if (config.gyrOffsetX >= 0)
+    gyroXmin += config.gyrOffsetX; 
+  else
+    gyroXmax += config.gyrOffsetX; 
+  if (config.gyrOffsetY >= 0)
+    gyroYmin += config.gyrOffsetY; 
+  else
+    gyroYmax += config.gyrOffsetY; 
+  if (config.gyrOffsetZ >= 0)
+    gyroZmin += config.gyrOffsetZ; 
+  else
+    gyroZmax += config.gyrOffsetZ; 
+
   // restore MPU mode
   initMPU();
 
